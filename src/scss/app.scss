@@ -1,3 +1,6 @@
+$dropdown-menu-min-width: 25rem;
+
+
 #root {
     margin: 50px auto;
     width: 800px;
@@ -35,4 +38,13 @@ td {
     position: absolute;
     top: 0;
     right: 0;
+}
+
+.edit-drop-container{
+    width: 18rem;
+    // background-color: #5DC5A6;
+}
+
+.edit-drop-content{
+    background-color: #5DC5A6;
 }

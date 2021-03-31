@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Body from "./components/Body";
+import AddEvent from "./components/AddEvent"
 import moment from "moment";
-import "./scss/app.scss";
+import "bulma/css/bulma.css"
+import "bulma-calendar/dist/css/bulma-calendar.min.css"
+
 
 
 function App() {
@@ -45,15 +48,16 @@ function App() {
       </div>
       <div className="navbar-start">
         <div className="navbar-item">
-          <p className="control">
+          <div className="control is-flex is-flex-direction-row">
             <strong>
-              {" "}
-              <span className="all-months">
-                <p className="title">{month}</p>{" "}
+              <span className="all-months has-text-danger">
+                <p className="title">{month}</p>
               </span>
-              <span className="all-years"></span>{" "}
+              <span className="all-years"></span>
             </strong>
-          </p>
+            {/* <button class="button is-light">Light</button> */}
+            <div className="ml-5"> <AddEvent /> </div>
+          </div>
         </div>
       </div>
 

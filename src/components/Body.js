@@ -33,7 +33,7 @@ function Body(props) {
 
   return (
     <div>
-      <table className="table is-bordered is-hoverable">
+      <table className="table is-bordered is-hoverable has-background-white-bis">
         <Header />
         <tbody>
           {rows.map((row, i) => {
