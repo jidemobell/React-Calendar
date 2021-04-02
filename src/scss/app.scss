@@ -40,11 +40,14 @@ td {
     right: 0;
 }
 
-.edit-drop-container{
-    width: 18rem;
-    // background-color: #5DC5A6;
+.time-capsule{
+    background-color: #F9DCA5;
+    
 }
 
-.edit-drop-content{
-    // background-color: #5DC5A6;
+.checked {
+    background: rgba(128, 128, 128, 0.664);
+    width: 15px;
+    border-radius: 50%;
+    padding-left: 3px;
 }

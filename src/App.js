@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Body from "./components/Body";
 import AddEvent from "./components/AddEvent"
 import moment from "moment";
@@ -10,8 +10,13 @@ import "bulma-calendar/dist/css/bulma-calendar.min.css"
 function App() {
   const [now, setNow] = useState(moment());
   const [month, setMonth] = useState(now.format("MMMM YYYY"))
-  const [daysInMonth, setDaysInMonth] = useState(null);
+  const [daysInMonth] = useState(null);
+  const [events, setEvents] = useState(localStorage.getItem("events"))
   
+  // console.log(events)
+  useEffect(()=> {
+    setEvents(localStorage.getItem("events"))
+  }, [])
 
   const handleBackClick = (e) => {
     e.preventDefault()
@@ -92,7 +97,7 @@ function App() {
         </div>
       </div>
     </nav>
-      <Body  now={now} daysInMonth={daysInMonth} />
+      <Body  now={now} daysInMonth={daysInMonth}  eventsData={events}/>
     </div>
   );
 }

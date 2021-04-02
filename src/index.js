@@ -4,6 +4,10 @@ import ReactDOM from 'react-dom';
 import "./scss/app.scss";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { initStorage } from "./data/store"
+
+if(!localStorage.getItem("events")) initStorage()
+
 
 ReactDOM.render(
   // <React.StrictMode>
