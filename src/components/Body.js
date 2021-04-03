@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import Header from "./Header";
 
@@ -14,16 +14,23 @@ function Body(props) {
   const [days] = useState([0, 1, 2, 3, 4, 5, 6]);
 
   let { daysInMonth, now, eventsData } = props;
-  let k = 0,
-    d = 0,
+  let d = 0,
     dattr;
 
   daysInMonth = now.daysInMonth();
   const today = moment(new Date().getTime()).format("D-MM-YYYY");
   let firstDayWeek = now.startOf("month").weekday();
-  let parsedEvents = JSON.parse(eventsData);
+  let parsedEvents = eventsData
 
   const eventDates = parsedEvents.map((x) => x.date);
+
+  const testDay = (val) => {
+    if(val.split("")[0] === "0"){
+      return val.split("")[1]
+    }
+    return val
+  }
+
   console.log(eventDates);
   return (
     <div>
@@ -69,7 +76,7 @@ function Body(props) {
                                   : "is-size-7"
                               }
                             >
-                              {dattr.split("-")[0]}
+                              {testDay(dattr.split("-")[0])}
                             </span>
                             <span className="is-size-5">Meeting</span>
                             <span className="is-size-7">

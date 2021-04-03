@@ -9,13 +9,13 @@ const data = [
   },
   {
     title: "Tallin Java Meetup",
-    date: "1-01-2018",
+    date: "01-01-2018",
     description: "A hangout for Java Devs",
     time: "22:11"
   },
   {
     title: "Tallin svelte Meetup",
-    date: "1-04-2021",
+    date: "01-04-2021",
     description: "A hangout for svelte Devs",
     time: "14:50"
   },

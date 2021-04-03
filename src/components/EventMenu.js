@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import onClickOutside from "react-onclickoutside";
+import { EventsContext } from "../HOC/EventProvider";
 
 const EventMenu = ({ open }) => {
   const [isOpen, setIsOpen] = useState(open);
@@ -8,12 +9,13 @@ const EventMenu = ({ open }) => {
   const [date, setDate] = useState("");
   const [eventDescription, setEventDescription] = useState("");
 
+  const { events, updateEvents } = useContext(EventsContext);
+
   const toggle = () => setIsOpen(false);
   EventMenu.handleClickOutside = () => setIsOpen(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let events = JSON.parse(localStorage.getItem("events"));
     let newEvent = {
       title: eventName,
       date: date.split("-").reverse().join("-"),
@@ -21,6 +23,8 @@ const EventMenu = ({ open }) => {
       time,
     };
     events.push(newEvent);
+    updateEvents();
+
     toggle();
   };
 

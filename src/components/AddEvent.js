@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import EventMenu from "./EventMenu";
-// import bulCalendar from "bulma-calendar/dist/js/bulma-calendar"
+
 
 const AddEvent = () => {
   const [dropView, setDropView] = useState(false);
@@ -19,7 +19,7 @@ const AddEvent = () => {
           <span>Add Event</span>
         </button>
       </div>
-      {dropView && <EventMenu open={dropView} />}
+      {dropView && <EventMenu open={dropView}  />}
     </div>
   );
 };
