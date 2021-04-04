@@ -1,32 +1,45 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import onClickOutside from "react-onclickoutside";
-import { EventsContext } from "../HOC/EventProvider";
+
 
 const EventMenu = ({ open }) => {
+  const [allEvents, setAllEvents] = useState(
+    JSON.parse(localStorage.getItem("events"))
+  );
   const [isOpen, setIsOpen] = useState(open);
   const [eventName, setEventName] = useState("");
   const [time, setTime] = useState("");
   const [date, setDate] = useState("");
   const [eventDescription, setEventDescription] = useState("");
 
-  const { events, updateEvents } = useContext(EventsContext);
+
 
   const toggle = () => setIsOpen(false);
   EventMenu.handleClickOutside = () => setIsOpen(false);
 
+  const forceUpdate = useReducer(() => ({}))[1]
+
   const handleSubmit = (e) => {
+    console.log("events in menu", allEvents)
     e.preventDefault();
+    let old = allEvents;
     let newEvent = {
       title: eventName,
       date: date.split("-").reverse().join("-"),
       description: eventDescription,
       time,
     };
-    events.push(newEvent);
-    updateEvents();
-
+    old.push(newEvent);
+    localStorage.setItem("events", JSON.stringify(old));
+    setAllEvents(old);
+    forceUpdate()
     toggle();
   };
+
+  useEffect(() => {
+    console.log("calling update inside menu");
+    localStorage.setItem("events", JSON.stringify(allEvents));
+  }, [allEvents, setAllEvents]);
 
   return (
     <>

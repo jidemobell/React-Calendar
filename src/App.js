@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import { EventsContext } from "./HOC/EventProvider";
+import React, { useState } from "react";
 import Body from "./components/Body";
 import AddEvent from "./components/AddEvent";
 import moment from "moment";
@@ -7,13 +6,8 @@ import "bulma/css/bulma.css";
 import "bulma-calendar/dist/css/bulma-calendar.min.css";
 
 function App() {
-  const { events } = useContext(EventsContext);
   const [now, setNow] = useState(moment());
   const [month, setMonth] = useState(now.format("MMMM YYYY"));
-  const [daysInMonth] = useState(null);
-  const [allEvents,] = useState(events);
-
-
 
   const handleBackClick = (e) => {
     e.preventDefault();
@@ -33,12 +27,13 @@ function App() {
     setMonth(now.format("MMMM YYYY"));
   }
 
-
   return (
     <div>
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item" href="/">{""}</a>
+          <a className="navbar-item" href="/">
+            {""}
+          </a>
           <button className="button navbar-burger">
             <span></span>
             <span></span>
@@ -57,7 +52,7 @@ function App() {
               {/* <button class="button is-light">Light</button> */}
               <div className="ml-5">
                 {" "}
-                <AddEvent  />{" "}
+                <AddEvent />{" "}
               </div>
             </div>
           </div>
@@ -67,7 +62,7 @@ function App() {
           <div className="navbar-item">
             <div className="field is-grouped">
               <p className="control">
-                <a className="button is-primary"  onClick={handleBackClick}>
+                <a className="button is-primary" onClick={handleBackClick}>
                   <i className="fa fa-arrow-circle-left" aria-hidden="true"></i>
                 </a>
               </p>
@@ -94,11 +89,10 @@ function App() {
           </div>
         </div>
       </nav>
-      <Body 
-        now={now} 
-        daysInMonth={daysInMonth} 
-        eventsData={allEvents}  
-        
+      <Body
+        now={now}
+        // daysInMonth={daysInMonth}
+        // eventsData={allEvents}
       />
     </div>
   );

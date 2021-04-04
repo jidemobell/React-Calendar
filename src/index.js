@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import { EventsProvider } from "./HOC/EventProvider"
 import "./scss/app.scss";
 import App from './App';
+import { initStorage } from './data/store';
 // import reportWebVitals from './reportWebVitals';
 
-
+if (localStorage.getItem("events") === null){
+  initStorage()
+}
 
 ReactDOM.render(
-  <EventsProvider>
-    <App />
-  </EventsProvider>,
+    <App />,
   document.getElementById('root')
 );
 

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
 import Header from "./Header";
 
 function Body(props) {
+  let { now } = props;
   const [rows] = useState([
     "row-one",
     "row-two",
@@ -12,24 +13,30 @@ function Body(props) {
     "row-six",
   ]);
   const [days] = useState([0, 1, 2, 3, 4, 5, 6]);
+  const [daysInMonth] = useState(now.daysInMonth());
+  const [allEvents, setAllEvents] = useState(JSON.parse(localStorage.getItem("events")));
 
-  let { daysInMonth, now, eventsData } = props;
+  console.log("events in body", allEvents);
   let d = 0,
     dattr;
-
-  daysInMonth = now.daysInMonth();
   const today = moment(new Date().getTime()).format("D-MM-YYYY");
   let firstDayWeek = now.startOf("month").weekday();
-  let parsedEvents = eventsData
+  let parsedEvents = allEvents;
 
   const eventDates = parsedEvents.map((x) => x.date);
 
   const testDay = (val) => {
-    if(val.split("")[0] === "0"){
-      return val.split("")[1]
+    if (val.split("")[0] === "0") {
+      return val.split("")[1];
     }
-    return val
-  }
+    return val;
+  };
+
+  useEffect(() => {
+    // console.log('checking event update')
+    // setAllEvents(events)
+  }, [allEvents])
+
 
   console.log(eventDates);
   return (
